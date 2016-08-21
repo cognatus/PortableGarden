@@ -1,0 +1,168 @@
+extends layout3
+
+block content
+
+    //#alert_message.appear_hiddenblock
+    //  #close_hiddenblock.back_hiddenblock
+    //  .popup_blockdisplay
+    //    form#alert_formreprot(name='alert_formreprot')
+    //      .close_grid Alerta!
+    //      .alert_title
+    //        | Seguro que desea eliminar: 
+    //        span  'Nombre de Cosa' 
+    //        | ?
+    //      .alert_submitcontainer
+    //        input.but2(type='button', value='Cancelar')
+    //        input.but1(type='button', value='Aceptar')
+
+
+    .page_container( ng-controller="users-data", ng-init="cargarUsers(#{datos[0]._id})" )
+    
+      #new_user.appear_hiddenblock
+        .popup_blockdisplay
+          form#new_userform( name='new_userform', ng-submit="guardarUser()" )
+            .close_grid
+              | Nuevo Usuario
+              span#close_hiddenblock
+            .popup_belowcont
+              #new_userdisplay.controluser_datscontainer
+                .controluser_optionpop
+                  span Id
+                  input.set_textuser(type='text', placeholder='Nuevo Id', name="Id", ng-model="Id2")
+                .controluser_optionpop
+                  span Nombre
+                  input.set_textuser(type='text', placeholder='Nuevo Nombre', name="Nombre", ng-model="Nombre2")
+                .controluser_optionpop
+                  span Apellido Paterno
+                  input.set_textuser(type='text', placeholder='Nuevo Apellido Paterno', name="Apellidop", ng-model="Apellidop2")
+                .controluser_optionpop
+                  span Apellido Materno
+                  input.set_textuser(type='text', placeholder='Nuevo Apellido Materno', name="Apellidom", ng-model="Apellidom2")
+                .controluser_optionpop
+                  span CURP
+                  input.set_textuser(type='text', placeholder='Nuevo CURP', name="CURP", ng-model="CURP2")
+                .controluser_optionpop
+                  span Email
+                  input.set_textuser(type='text', placeholder='Nuevo Email', name="Email", ng-model="Email2")
+                .controluser_optionpop
+                  span RFC
+                  input.set_textuser(type='text', placeholder='Nuevo RFC', name="RFC", ng-model="RFC2")
+                .controluser_optionpop
+                  span Sexo
+                  select.set_textuser(placeholder='Nuevo Tipo', name="Sexo", ng-model="Sexo2")
+                    option( value="Hombre" ) Hombre
+                    option( value="Mujer" ) Mujer
+                .controluser_optionpop
+                  span Contraseña
+                  input.set_textuser(type='password', placeholder='Nueva Contraseña', name="Contraseña", ng-model="Contrasenia2")
+                .controluser_optionpop
+                  span Tipo de Usuario
+                  select.set_textuser(placeholder='Nuevo Tipo', name="Tipo", ng-model="Tipo2")
+                    option( value="Gestor de Semillas") Gestor de Semillas
+                    option( value="Gestor de Condiciones") Gestor de Condiciones
+                    option( value="Administrador") Administrador
+                .controluser_submitcontainer
+                  input(type='submit', value='')
+
+      .blockpage_container
+        .page_title(style='background-color: #9C27B0;')
+          span.page_logo-controluser
+          | Control de Usuarios
+        .blockpage_innercontainer
+          .grid_display
+            #grid_move2.users_display
+              .users_displayinner
+                .controluser_sectiontitle
+                  | Usuarios
+                .usernew_disp
+                  b +
+                  span Nuevo Usuario
+                .usernamedisp_container
+                  div( ng-repeat="item in users", ng-click="cargarInfo(item)" )
+                    .user_namedisp
+                      img(src='/profile/{{item._id}}.jpg')
+                      label {{item.nombre}}
+                      span(ng-click="borrarUser(item)") X
+              .usersinfo_displayinner
+                .controluser_sectiontitle
+                  #back_button2.back_button
+                    span
+                  | Datos de Usuario
+                #old_userdisplay.controluser_datscontainer 
+                  .controluser_option
+                    | Id
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div
+                        span {{elegido._id}}
+                      input.set_textuser(type='text', placeholder='Nuevo Id', ng-model="_id")
+                  .controluser_option
+                    | Nombre
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div
+                        span {{elegido.nombre}}
+                      input.set_textuser(type='text', placeholder='Nuevo Nombre', ng-model="nombre")
+                  .controluser_option
+                    | Apellido Paterno
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div
+                        span {{elegido.apellidop}}
+                      input.set_textuser(type='text', placeholder='Nuevo Apellido Paterno', ng-model="apellidop")
+                  .controluser_option
+                    | Apellido Materno
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div 
+                        span {{elegido.apellidom}}
+                      input.set_textuser(type='text', placeholder='Nuevo Apellido Materno', ng-model="apellidom")
+                  .controluser_option
+                    | CURP
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div 
+                        span {{elegido.curp}}
+                      input.set_textuser(type='text', placeholder='Nuevo CURP', ng-model="curp")
+                  .controluser_option
+                    | Email
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div 
+                        span {{elegido.email}}
+                      input.set_textuser(type='text', placeholder='Nuevo Email', ng-model="email")
+                  .controluser_option
+                    | RFC
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div 
+                        span {{elegido.rfc}}
+                      input.set_textuser(type='text', placeholder='Nuevo RFC', ng-model="rfc")
+                  .controluser_option
+                    | Sexo
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div 
+                        span {{elegido.sexo}}
+                      select.set_textuser( ng-model="sexo")
+                        option Hombre
+                        option Mujer
+                  .controluser_option
+                    | Contraseña
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div 
+                        span **********
+                      input.set_textuser(type='password', placeholder='Nueva Contraseña', ng-model="password")
+                  .controluser_option
+                    | Tipo de Usuario
+                  .controluser_optionouter
+                    .controluser_optioninner
+                      div 
+                        span {{elegido.tipo}}
+                      select.set_textuser(ng-model="tipo")
+                        option Gestor de Semillas
+                        option Gestor de Condiciones
+                        option Administrador
+                  .controluser_submitcontainer
+                    input(type='submit', value='', ng-click="modificarFulano(elegido)")

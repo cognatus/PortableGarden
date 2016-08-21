@@ -1,0 +1,124 @@
+doctype html
+html( ng-app='aplicacion' )
+  head
+    title= title
+    meta( charset='UTF-8' )
+    meta( http-equiv='X-UA-Compatible', content='IE=edge,chrome=1' )
+    meta( name='viewport', content='width=device−width, maximum-scale=1.0 user-scalable=no' )
+    link( rel='shortcut icon', type='image/png', href='images/plant_icon.png' )
+    link( rel='stylesheet', type='text/css', href='/stylesheets/style_eco.css' )
+    link( rel='stylesheet', type='text/css', href='/stylesheets/style_eco_responsive.css' )
+    link( rel='stylesheet', href='/scrollbar/jquery.mCustomScrollbar.css' )
+    link( rel='stylesheet', href='/scrollbar/jquery.mCustomScrollbar.min.css' )
+    script( type='text/javascript', src='/js/jquery-2.1.1.js' )
+    script( type='text/javascript', src='/scrollbar/jquery.mCustomScrollbar.concat.min.js' )
+    script( type='text/javascript', src='/scrollbar/jquery.mCustomScrollbar.js' )
+    script( type='text/javascript', src='/js/viewcontrol.js' )
+    script( type='text/javascript' src='/js/angular.min.js' )
+    script( type='text/javascript' src='/socket.io/socket.io.js' )
+    script( type='text/javascript' src='/js/front-end.js' )
+    script( type='text/javascript', src='/js/jsPDF/examples/js/jquery/jquery-1.7.1.min.js' )
+    script( type='text/javascript', src='/js/jsPDF/examples/js/jquery/jquery-ui-1.8.17.custom.min.js' )
+    script( type='text/javascript', src='/js/jsPDF/dist/jspdf.debug.js' )
+    script( type='text/javascript', src='/js/PDF.js' )
+    if datos != undefined
+      style.
+        .userperfil_imgcont, .menu_usercont, .back_userinfo
+          {background-image: url('/profile_back/#{datos[0]._id}.jpg');}
+      if datos[0].ctema == "on"
+        style.
+          body{background-color: #333333;}
+          body, input[type="text"], input[type="password"], 
+          .menu_opccontainer a, .gl1 a, close_notifs, .msm_buown{color: #848484;} 
+          .menu_block, .msm_buown, .checkbox-style label, .grid_display, .dats_container, 
+          .grafic_container, .grafic_cont, .messaging_menucontainer, .message_inner i.riseblock2
+            {background-color: #212121;}
+          .popup_blockdisplay, .notifications_hiddenblock, .notifications_hiddenblock i{background-color: #212121;}
+          .msm_buown span{color: rgba(255,255,255,0.2);}
+
+  body
+    if datos != undefined
+      noscript 
+        div Active javascript para el optimo funcionamiento!
+      #close_menu.back_menu
+      .menu_block
+        .menu_title
+        .menu_usercont
+          .user_imgcont
+            a(href='/userperfil')
+              img.user_icon(src='/profile/#{datos[0]._id}.jpg')#user_icon
+          a(href='/userperfil')
+            .menu_namecont
+              | #{datos[0].nombre} #{datos[0].apellidop}
+        .menu_opccontainer
+          a(href='/principal')
+            .menu_option
+              | Inicio
+              span#home_icon
+          a(href='/messaging')
+            .menu_option
+              | Mensajería
+              span#mail_icon
+          if datos[0].privilegio == 1
+            a(href='/seeds')
+              .menu_option
+                | Semillas
+                span#seed_icon  
+          if datos[0].privilegio == 2
+            a(href='/stats')
+              .menu_option
+                | Condiciones
+                span#pencil_icon
+          if datos[0].privilegio == 3
+            a(href='/users_control')
+              .menu_option
+                | Usuarios
+                span#useradmon_icon
+            a(href='/reports')
+              .menu_option
+                | Reportes
+                span#report_icon
+          //a(href='/webcam')
+          //  .menu_option
+          //    | Webcam
+          //    span#webcam_icon
+          a(href='/settings')
+            .menu_option
+              | Configuración
+              span#settings_icon
+          a(href='/cerrar')
+            .menu_option
+              | Cerrar Sesión
+              span#session_icon
+        .menu_footer
+          | by 
+          span Pro-HardSoft ©
+              span#session_icon
+      .pg_palletepage
+        .pg_in
+          #display_menu.menu_buttoncontainer
+            span
+            span
+            span
+          a(href='/principal' id="app_title") 
+            | Portable Garden
+          span#menu_logo
+          .pallete_user
+            #bell_icon
+            .notifications_hiddenblock
+              i
+              .close_notifs
+                span#close_notifs Mensajes
+              .gl1( ng-controller="menu", ng-init="cargarUsers2(#{datos[0]._id})")
+                .editable-scrollbar
+                  div( ng-repeat="item in users", ng-click="cargarInfo2(item)" )
+                    .gl2
+                      img.gl2_userimg(src='profile/{{item.iddest}}.jpg')
+                      .gl2_about
+                        .gl2_aboutinner
+                          .gl2_title {{item.dest}} {{item.destapp}}
+                          .gl2_info
+                            | {{item.emisor}} {{item.ultimo}}
+      .pg_out
+      
+  block content

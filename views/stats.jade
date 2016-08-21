@@ -1,0 +1,82 @@
+extends layout3
+
+block content
+    #alert_message.appear_hiddenblock
+      #close_hiddenblock.back_hiddenblock
+      .popup_blockdisplay
+        form#alert_formreprot(name='alert_formreprot')
+          .close_grid Alerta!
+          .alert_title
+            | Seguro que desea eliminar: 
+            span  'Nombre de Cosa' 
+            | ?
+          .alert_submitcontainer
+            input.but2(type='button', value='Cancelar')
+            input.but1(type='button', value='Aceptar')
+            
+    .page_container( ng-controller="arduino-write" )
+      .blockpage_container
+        .page_title(style='background-color: #8BC34A;')
+          span.page_logo-stats
+          | Condiciones
+        .blockpage_innercontainer
+          .grid_display
+            #grid_move4.stats_display
+              .huert_display
+                .stats_sectiontitle
+                  | Mapa del Huerto
+                .huert_minidisplay
+                  #huertsecc1.section_huert( ng-click="cambiar(1)" )
+                    div PISO 1
+                  #huertsecc2.section_huert( ng-click="cambiar(2)" )
+                    div PISO 2
+              .stats_actionsouter
+                .stats_sectiontitle
+                  #back_button4.back_button
+                    span
+                  | Funciones del Huerto
+                .stats_datscontainer
+                  .stats_dat(style="text-align: center;") Piso {{piso}}
+                .stats_datscontainer
+                  .stats_dat
+                    | Temperatura
+                    span( id="temp" )
+                  .stats_dat
+                    | Humedad
+                    span( id="hum" )
+                  .stats_dat
+                    | Luz
+                    span( id="luz" )
+                .stats_functionscontainer
+                  .function_cont
+                    .funct_conth4
+                      h4 Luz
+                    .function_block
+                      .funct_grid
+                        .checkbox-style
+                          input#condition-1(type='checkbox', value='1', name='luz_onoff', ng-click="activarLuz()")
+                          label(for='condition-1')
+                  .function_cont
+                    .funct_conth4
+                      h4 Agua
+                    .function_block
+                      .funct_grid
+                        .checkbox-style
+                          input#condition-2(type='checkbox', value='2', name='agua_onoff', ng-click="activarBomba()")
+                          label(for='condition-2')
+                  .function_cont
+                    .funct_conth4
+                      h4 Ventiladores
+                    .function_block
+                      .funct_grid
+                        .checkbox-style
+                          input#condition-3(type='checkbox', value='3', name='aire_onoff', ng-click="activarVentiladores()")
+                          label(for='condition-3')
+                  .function_cont
+                    .funct_conth4
+                      h4 Cortina
+                    .function_block
+                      .funct_grid
+                        .checkbox-style
+                          input#condition-4(type='checkbox', value='4', name='aire_onoff', ng-click="activarCortina()")
+                          label(for='condition-4')

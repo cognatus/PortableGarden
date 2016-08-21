@@ -1,0 +1,38 @@
+extends layout3
+
+block content
+  style.
+    body{background-image: url("/images/body_back.jpg");background-attachment: fixed;background-size: cover;background-position: center;}
+    .pg_palletepage, .pg_out, .menu_block{display: none;}
+
+  .head_init
+    span#init_logo
+    | Portable Garden
+  .init_container
+    .form_head Iniciar Sesión
+    .init_img
+      .init_imgcontainer
+        img(src='/images/notif_usericon.jpg')
+    //form( name='init_form', action='primera', method='post')//esto se ejecuta la primera vez que se corre el programa en otra compu
+    form( name='inicioform', action='inicia', method='post', onsubmit='return validarInicio();' )
+      .init_fieldcontainer
+        .init_field
+          #init_icon1.init_titlefield
+          input#init_user(type='text', placeholder='Usuario', name='iniciouser')
+          #err_username.alertvalidation
+            span Usuario incorrecto
+      .init_fieldcontainer(style='margin-bottom: 16px;')
+        .init_field
+          #init_icon2.init_titlefield
+          input#init_pass(type='password', placeholder='Contraseña', name='iniciopass')
+          #err_intipass.alertvalidation
+            span Contraseña incorrecta
+      //div
+        //.squaredThree
+        //  input#squaredThree(type='checkbox', value='Recuerdame', name='check')
+        //  label(for='squaredThree')
+        //| Recuerdame
+      div
+        input#init_submit(type='submit', value='Iniciar', name='init_submit')
+    div
+      .forgot_pass by Pro Hardsoft &#169;

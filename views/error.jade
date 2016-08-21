@@ -1,0 +1,19 @@
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style_eco.css')
+    link(rel='stylesheet', href='/stylesheets/style_eco_responsive.css')
+  body
+    style.
+      body{background-image: url("images/body_back.jpg");background-attachment: fixed;background-size: cover;background-position: center;}
+      .pg_palletepage, .pg_out, .menu_block{display: none;}
+    .body_tptback
+      .err_outer
+        .error_container
+          h1 Error
+          div
+            b Ha ocurrido un error!
+            blockquote #{texto}
+        .error_container
+          a(href=url)
+            .error_back Regresar

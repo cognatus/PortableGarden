@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Portable Garden</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_stats">stats</string>
+    <string name="stat_title">Condiciones</string>
+    <string name="map_title">Mapa del Huerto</string>
+    <string name="funct_title">Funciones del Huerto</string>
+    <string name="luz">Luz</string>
+    <string name="temp">Temperatura</string>
+    <string name="hum">Humedad</string>
+    <string name="agua">Agua</string>
+    <string name="vent">Ventiladores</string>
+    <string name="cort">Cortinas</string>
+</resources>

@@ -1,0 +1,235 @@
+
+@media screen and (max-width: 1080px){
+
+	#init_logo{width: 36px;height: 36px;top: 7px;}
+
+	.head_init{font-size: 30px;}
+
+	.init_container{top: 96px;}
+
+	.menu_block{left: -280px;}
+
+	.page_container{margin-left: 0px;}
+
+	#display_menu:hover .menu_block{left: 0;}
+
+	#close_menu:hover .menu_block{left: -280px;}
+
+	.menu_buttoncontainer{display: inline-block;}
+
+	.grafic_container{height: 312px;}
+
+	.grafictitle_container{width: 100%;height: 62px;color: rgb(130,130,130);float: none;background-color: #f1c40f;}
+
+	.grafictitle_container h4{width: 60%;margin: 0;padding: 21px 0px 21px 0px;
+		text-transform: uppercase;font-size: 15px;
+		float: left;}
+
+	.graficinfo_container{width: 100%;float: none;padding: 0px;height: 250px;}	
+
+	.grafic_icon, .grafic_icon2, .grafic_icon3, .grafic_icon4{
+		background-size: 28px 28px;float: left;width: 40%;height: 100%;} 	
+
+	.grafic_cont{width: 360px;}
+
+	.grafic_innerinfo{width: calc(100% - 360px);}
+
+	.users_displayinner{width: 32%;}
+
+	.usersinfo_displayinner{width: 68%;}
+
+	.user_imgcont2{height: 230px;}
+
+	.userinfo_namecont{padding-left: 132px;}
+
+	.user_icon2{width: 88px;height: 88px;margin-top: 184px;}
+
+}	
+
+@media screen and (max-width: 672px){
+
+	#init_logo{width: 34px;height: 34px;top: 6px;}
+
+	.head_init{font-size: 28px;}
+
+	.init_container{top: 88px;}
+
+	#loginfield_1{color: #fff;}
+
+	.err_outer{width: auto;margin: 16px;}
+
+	.grid_display{margin: 16px 12px 16px 12px;}			
+
+	.init_fieldcontainer{padding: 0px;width: auto;}	
+
+	.huert_map{width: 100%;margin-bottom: 16px;}
+
+	.menu_buttoncontainer{top: 1px;margin-right: 12px;}
+
+	#menu_logo{background-size: 24px 24px;top: -1px;}
+
+	.pallete_user{margin-right: 15px;width: 50px;}
+
+	.pallete_user div#bell_icon{background-size: 34% 26%;}
+
+	.notifications_hiddenblock{width: 262px;left: -176px;}
+
+	.notifications_hiddenblock i{left: 194px;}
+
+	.huert_map{float: none;}
+
+	.dats_container{width: 100%;margin-left: 0;float: none;}
+
+	.grafic_container{height: auto;}
+
+	.graficinfo_container{height: 500px;}	
+
+	.grafic_cont{width: 100%;height: 50%;}
+
+	.grafic_innerinfo{width: 100%;height: 50%;}
+
+	.halfgrafic{width: 100%;float: none;}
+
+	.time_graficcont{margin: 16px;height: 220px;}
+
+	.webcam_display{height: 280px;}
+
+	.messaging_menucontainer{margin: 16px 12px 0 12px;}
+
+	.messaging_display, .users_display, .stats_display{width: 200%;}
+
+	.message_displayinner{width: 50%;}
+
+	.messageinfo_displayinner{width: 50%;}
+
+	.message_inputcontainer{position: absolute;bottom: 0;right: 0;width: 50%;}
+
+	.users_displayinner{width: 50%;}
+
+	.usersinfo_displayinner{width: 50%;}
+
+	.reports_display{width: 200%;}
+
+	.reports_displayinner{width: 50%;}
+
+	.reportsinfo_displayinner{width: 50%;}
+
+	.user_imgcont2{height: 186px;}
+
+	.userinfo_namecont{font-size: 15px;padding-left: 124px;}
+
+	.user_icon2{width: 78px;height: 78px;margin-top: 146px;}
+
+	.appear_hiddenblock{height: calc(100% - 60px);width: 100%;}
+
+	.popup_blockdisplay{width: 90%;}
+
+	.popup_belowcont{height: calc(100% - 50px);}
+
+	.stats_actionsouter, .huert_display{width: 50%;}
+
+	.right_fieldbutton{margin-top: 8px;width: 100%;float: right;}
+
+	.infosettings_inner{padding-top: 4px;}
+
+	input.set_text, select.set_text{width: calc(100% - 56px);}
+
+	.upload_title{width: auto;float: none;}
+
+	.upload{float: none;width: auto;margin-left: 0;display: block;}
+
+	.underupload{width: auto;}
+
+	.controluser_optionpop{height: auto;}
+
+	.controluser_optionpop span{float: none;width: auto;display: block;}
+
+	input.set_textseeds, select.set_textseeds, input.set_textuser, select.set_textuser{
+		width: calc(100% - 18px);float: none;margin-left: 16px;
+	}
+
+	.controluser_optioninner input.set_textuser, .controluser_optioninner select.set_textuser{
+		margin-left: 0px;width: calc(100% - 2px);
+	}
+
+}
+
+@media screen and (max-height: 640px) and (max-width: 672px){
+
+	body{font-size: 12px;}
+
+	.pg_out{height: 60px;}
+
+	.pg_palletepage{height: 60px;}
+
+	.pg_in{padding: 18px 24px 18px 24px;font-size: 18px;height: 24px;}
+
+	.menu_title{height: 60px;}
+
+	.menu_buttoncontainer{top: 2px;margin-right: 12px;}
+
+	#menu_logo{background-size: 22px 22px;top: -2px;}
+
+	.pallete_user{height: 60px;}		
+
+	.pallete_user div#bell_icon{background-size: 16px 16px;}			
+
+	.gl2_userimg{width: 42px;height: 42px;}
+
+	.gl2_title{font-size: 11px;}
+
+	.user_icon{width: 56px;height: 56px;margin-top: 54px;}	
+
+	.menu_namecont{padding: 15px 24px 15px 80px;}
+
+	.menu_opccontainer{padding-top: 8px;height: calc(100% - 246px);height: -moz-calc(100% - 246px);
+		height: -webkit-calc(100% - 246px);}
+
+	.menu_option{padding: 14px 28px 14px 28px;}
+
+	.menu_option span{width: 16px;height: 16px;}
+
+	.page_title{padding: 17px 16px 13px 20px;font-size: 15px;}
+
+	.page_title span{width: 28px;height: 28px;}
+
+	.huert_map{height: 256px;}
+	
+	.dats_container{height: 267px;}
+
+	.dats_container h4{padding: 18px;font-size: 14px;}
+
+	.dats_inner{height: 212px;overflow: hidden;}	
+
+	.dat_option{width: auto;padding: 19px 24px 19px 24px;font-size: 11px;}
+
+	.dat_option span{float: right;display: inline-block;font-size: 12px;font-weight: normal;}
+
+	.grafictitle_container{height: 57px;}
+
+	.grafictitle_container h4{padding: 19px 0px 19px 0px;font-size: 14px;}
+
+	.message_sectiontitle_up, .reports_sectiontitle, .stats_sectiontitle, .controluser_sectiontitle, .settings_sectiontitle
+		{padding: 16px 24px 12px 24px;font-size: 13px;}
+
+	.close_grid{padding: 16px 22px 16px 22px;font-size: 13px;}
+
+	.popup_belowcont{max-height: calc(100% - 50px);}
+
+}
+
+@media screen and (max-width: 445px){
+
+	#init_logo{width: 28px;height: 28px;}
+
+	.head_init{font-size: 26px;}
+
+	.init_container{width: 92%;}
+
+	.pg_in{padding: 18px 18px 18px 18px;}
+	
+	.page_title{padding: 15px 16px 10px 20px;font-size: 14px;}
+
+	.page_title span{width: 27px;height: 27px;}
+}
+

@@ -1,0 +1,502 @@
+extends layout
+
+block content
+
+    .page_container
+      .blockpage_container
+        .page_title(style='background-color: #34495e;')
+          span.page_logo-home
+          | Inicio
+        .blockpage_innercontainer
+          .secc1
+            .huert_map
+              #huertsecc1.section_huert
+                div( onclick="piso1()" ) PISO 1
+              #huertsecc2.section_huert
+                div( onclick="piso2()" ) PISO 2
+            .dats_container
+              h4 DATOS - POR PISO
+              .dats_inner
+                .dat_option
+                  | Temperatura
+                  span(id='tempp')
+                .dat_option
+                  | Humedad
+                  span(id='humm')
+                .dat_option
+                  | Luz
+                  span(id='luzz')
+          .secc2
+            .grafic_container
+              .grafictitle_container(style='background-color: #f39c12;')
+                h4 Luz
+                .grafic_icon
+              .graficinfo_container
+                .grafic_cont( id='chartLuz' )
+                .grafic_innerinfo
+                  .info_grafic
+                    .item
+                      span.color_t(style='background-color: #f39c12;')
+                      | Lote 1
+                      span.item_stat( id='luz' )
+                    .item
+                      span.color_t(style='background-color: #ff5722;')
+                      | Lote 2
+                      span.item_stat( id='luz2' )
+                    //.item
+                    //  span.color_t
+                    //  | Lote 3
+                    //  span.item_stat 12
+            .grafic_container
+              .graficinfo_container
+                .grafic_innerinfo
+                  .info_grafic
+                    .item
+                      span.color_t(style='background-color: #e74c3c;')
+                      | Lote 1
+                      span.item_stat( id='temp' )
+                    .item
+                      span.color_t(style='background-color: #e91e63;')
+                      | Lote 2
+                      span.item_stat( id='temp2' )
+                    //.item
+                    //  span.color_t
+                    //  | Lote 3
+                    //  span.item_stat 12
+                .grafic_cont( id="chartTemperatura" )
+              .grafictitle_container(style='background-color: #e74c3c;')
+                h4 Temperatura
+                .grafic_icon2
+            .grafic_container
+              .grafictitle_container(style='background-color: #3498db;')
+                h4 Humedad
+                .grafic_icon3
+              .graficinfo_container
+                .grafic_cont( id="chartHumedad" )
+                .grafic_innerinfo
+                  .info_grafic
+                    .item
+                      span.color_t(style='background-color: #3498db;')
+                      | Lote 1
+                      span.item_stat( id='humd' )
+                    .item
+                      span.color_t(style='background-color: #9c27b0;')
+                      | Lote 2
+                      span.item_stat( id='humd2' )
+                    //.item
+                    //  span.color_t
+                    //  | Lote 3
+                    //  span.item_stat 12
+            //.grafic_container
+            //  .graficinfo_container
+            //    .grafic_innerinfo
+            //      .info_grafic
+            //        .item
+            //          span.color_t
+            //          |                         Lote 1
+            //          span.item_stat 12
+            //        .item
+            //          span.color_t
+            //          |                         Lote 2
+            //          span.item_stat 12
+            //        .item
+            //          span.color_t
+            //          |                         Lote 3
+            //          span.item_stat 12
+            //    .grafic_cont
+            //  .grafictitle_container(style='background-color: #16a085;')
+            //    h4 Presión
+            //    .grafic_icon4
+            //.grid_display
+              //.settings_sectiontitle(style="background-color:#8BC34A;color:#fff;font-weight: normal;")
+                //| Revisar graficas por Fecha
+              //.halfgrafic
+                //.settings_sectiontitle 
+                  //| Fecha de Inicio
+                  //.grafic_inpview
+                    //input(type="date", placeholder="Fecha", min="2015-06-24", id="fecha")
+                //.report_submitcontainer
+                  //input(type='submit', value='', onclick="puchurro()")
+                //.grafic_texttime
+                  //p(id="ultimo") 
+              //.halfgrafic
+                //.time_graficcont(id='chartLuz2')
+                //.time_graficcont(id='chartTemperatura2')
+                //.time_graficcont(id='chartHumedad2')  
+
+    script.
+      var socket = io.connect('http://192.168.5.27:3000');
+      var piso = 1;
+      //setInterval(pedir, 100);
+      function pedir(){
+        socket.emit('plox', 'hola');
+      }
+      function piso1(){
+        var piso = 1;
+      }
+      function piso2(){
+        var piso = 2;
+      }
+      //function puchurro(){
+        //var aux = document.getElementById("fecha").value.split('-');
+        //socket.emit('sacaCharts', aux);
+      //}
+      socket.on('sensor1', function(data){
+        $('#luz').text(data.luz +' Lux');
+        $('#temp').text(data.temperatura +' °C');
+        $('#humd').text(data.humedad +' HR');
+        if(piso == 1){
+          $('#luzz').text(data.luz +' Lux');
+          $('#tempp').text(data.temperatura +' °C');
+          $('#humdd').text(data.humedad +' HR');
+        }
+      })
+      socket.on('sensor2', function(data){
+        $('#luz2').text(data.luz +' Lux');
+        $('#temp2').text(data.temperatura +' °C');
+        $('#humd2').text(data.humedad +' HR');
+        if(piso == 2){
+          $('#luzz').text(data.luz +' Lux');
+          $('#tempp').text(data.temperatura +' °C');
+          $('#humdd').text(data.humedad +' HR');
+        }
+      })
+      //graficas
+      var chartHumedad;
+      chartHumedad = new Highcharts.Chart({
+          chart: {
+              renderTo: 'chartHumedad', 
+              defaultSeriesType: 'spline',
+              events: {
+                  load: function() {
+                    // Cada vez que reciba un valor desde el socket, lo meto en la gráfica
+                    //hay que moverle aqui para que coincida con los cambios de controlador pero tengo sueño :'(
+                    socket.on('hum', function (data) {
+                      var dato = parseInt(data)
+                      var tiempo = (new Date()).getTime();
+                      var series = chartHumedad.series[0];
+                      series.addPoint([tiempo, dato]);
+                      if(series.data.length > 7){
+                        series.data[0].remove(true);
+                      }
+                    });
+                    socket.on('hum2', function (data) {
+                      var dato = parseInt(data)
+                      var tiempo = (new Date()).getTime();
+                      var series = chartHumedad.series[1];
+                      series.addPoint([tiempo, dato]);
+                      if(series.data.length > 7){
+                        series.data[0].remove(true);
+                      }
+                    });
+                  }
+              }
+          },
+          rangeSelector : {
+              selected : 100
+          },
+          title: {
+              text: 'Humedad'
+          },
+          xAxis: {
+              type: 'datetime',
+              tickPixelInterval: 150,
+              maxZoom: 20 * 1000
+          },
+          yAxis: {
+              minPadding: 0.2,
+              maxPadding: 0.2,
+              title: {
+                  text: 'HR'
+              }
+          },
+          series: [{
+            color: '#3498db',
+              name: 'Lote 1',
+              data: []
+          },{
+            color: '#9c27b0',
+              name: 'Lote 2',
+              data: []
+          }]
+      });
+      var chartTemperatura;
+      chartTemperatura = new Highcharts.Chart({
+          chart: {
+              renderTo: 'chartTemperatura', 
+              defaultSeriesType: 'spline',
+              events: {
+                  load: function() {
+                    socket.on('temp', function (data) {
+                      var dato = parseInt(data)
+                      var tiempo = (new Date()).getTime();
+                      var series = chartTemperatura.series[0];
+                      series.addPoint([tiempo, dato]);
+                      if(series.data.length > 7){
+                        series.data[0].remove(true);
+                      }
+                    });
+                    socket.on('temp2', function (data) {
+                      var dato = parseInt(data)
+                      var tiempo = (new Date()).getTime();
+                      var series = chartTemperatura.series[1];
+                      series.addPoint([tiempo, dato]);
+                      if(series.data.length > 7){
+                        series.data[0].remove(true);
+                      }
+                    });
+                  }
+              }
+          },
+          rangeSelector : {
+              selected : 100
+          },
+          title: {
+              text: 'Temperatura'
+          },
+          xAxis: {
+              type: 'datetime',
+              tickPixelInterval: 150,
+              maxZoom: 20 * 1000
+          },
+          yAxis: {
+              minPadding: 0.2,
+              maxPadding: 0.2,
+              title: {
+                  text: '°C'
+              }
+          },
+          series: [{
+              color: '#e74c3c',
+              name: 'Lote 1',
+              data: []
+          },{
+              color: '#e91e63',
+              name: 'Lote 2',
+              data: []
+          }]
+      });
+      var chartLuz;
+      chartLuz = new Highcharts.Chart({
+          chart: {
+              renderTo: 'chartLuz', 
+              defaultSeriesType: 'spline',
+              events: {
+                  load: function() {
+                    socket.on('luz', function (data) {
+                      var dato = parseInt(data)
+                      var tiempo = (new Date()).getTime();
+                      var series = chartLuz.series[0];
+                      series.addPoint([tiempo, dato]);
+                      if(series.data.length > 7){
+                        series.data[0].remove(true);
+                      }
+                    });
+                    socket.on('luz2', function (data) {
+                      var dato = parseInt(data)
+                      var tiempo = (new Date()).getTime();
+                      var series = chartLuz.series[1];
+                      series.addPoint([tiempo, dato]);
+                      if(series.data.length > 7){
+                        series.data[0].remove(true);
+                      }
+                    });
+                  }
+              }
+          },
+          rangeSelector : {
+              selected : 100
+          },
+          title: {
+              text: 'Luz'
+          },
+          xAxis: {
+              type: 'datetime',
+              tickPixelInterval: 150,
+              maxZoom: 20 * 1000
+          },
+          yAxis: {
+              minPadding: 0.2,
+              maxPadding: 0.2,
+              title: {
+                  text: 'Lux'
+              }
+          },
+          series: [{
+              color: '#f39c12',
+              name: 'Lote 1',
+              data: []
+          },{
+              color: '#ff5722',
+              name: 'Lote 2',
+              data: []
+          }]
+      });
+      //otras graficas
+      //var chartHumedad2;
+      //chartHumedad2 = new Highcharts.Chart({
+          //chart: {
+              //renderTo: 'chartHumedad2', 
+              //defaultSeriesType: 'spline',
+              //events: {
+                  //load: function() {
+                    //// Cada vez que reciba un valor desde el socket, lo meto en la gráfica
+                    ////hay que moverle aqui para que coincida con los cambios de controlador pero tengo sueño :'(
+                    //socket.on('hum23', function (data) {
+                      //var series = chartHumedad2.series[0];
+                      //for (var i = 0; i < data.length; i++) {
+                        //series.addPoint([data[i].hora, data[i].humedad]);
+                        //if(series.data.length > 15){
+                          //series.data[0].remove(true);
+                        //}
+                      //};
+                    //});
+                    //socket.on('hum22', function (data) {
+                      //var series = chartHumedad2.series[1];
+                      //for (var i = 0; i < data.length; i++) {
+                        //series.addPoint([data[i].hora, data[i].humedad]);
+                        //if(series.data.length > 15){
+                          //series.data[0].remove(true);
+                        //}
+                      //};
+                    //});
+                  //}
+              //}
+          //},
+          //rangeSelector : {
+              //selected : 100
+          //},
+          //title: {
+              //text: 'Humedad'
+          //},
+          //xAxis: {
+              //type: 'datetime',
+              //tickPixelInterval: 150,
+              //maxZoom: 20 * 1000
+          //},
+          //yAxis: {
+              //minPadding: 0.2,
+              //maxPadding: 0.2,
+              //title: {
+                  //text: 'HR'
+              //}
+          //},
+          //series: [{
+            //color: '#3498db',
+              //name: 'Lote 1',
+              //data: []
+          //},{
+            //color: '#9c27b0',
+              //name: 'Lote 2',
+              //data: []
+          //}]
+      //});
+      //var chartTemperatura2;
+      //chartTemperatura2 = new Highcharts.Chart({
+          //chart: {
+              //renderTo: 'chartTemperatura2', 
+              //defaultSeriesType: 'spline',
+              //events: {
+                  //load: function() {
+                    //socket.on('temp23', function (data) {
+                      //var series = chartTemperatura2.series[0];
+                      //for (var i = 0; i < data.length; i++) {
+                        //series.addPoint([data[i].hora, data[i].temperatura]);
+                        //if(series.data.length > 15){
+                          //series.data[0].remove(true);
+                        //}
+                      //};
+                    //});
+                    //socket.on('temp22', function (data) {
+                      //var series = chartTemperatura2.series[1];
+                      //for (var i = 0; i < data.length; i++) {
+                        //series.addPoint([data[i].hora, data[i].temperatura]);
+                      //};
+                    //});
+                  //}
+              //}
+          //},
+          //rangeSelector : {
+              //selected : 100
+          //},
+          //title: {
+              //text: 'Temperatura'
+          //},
+          //xAxis: {
+              //type: 'datetime',
+              //tickPixelInterval: 150,
+              //maxZoom: 20 * 1000
+          //},
+          //yAxis: {
+              //minPadding: 0.2,
+              //maxPadding: 0.2,
+              //title: {
+                  //text: '°C'
+              //}
+          //},
+          //series: [{
+              //color: '#e74c3c',
+              //name: 'Lote 1',
+              //data: []
+          //},{
+              //color: '#e91e63',
+              //name: 'Lote 2',
+              //data: []
+          //}]
+      //});
+      //var chartLuz2;
+      //chartLuz2 = new Highcharts.Chart({
+          //chart: {
+              //renderTo: 'chartLuz2', 
+              //defaultSeriesType: 'spline',
+              //events: {
+                  //load: function() {
+                    //socket.on('luz23', function (data) {
+                      //var series = chartLuz2.series[0];
+                      //for (var i = 0; i < data.length; i++) {
+                        //series.addPoint([data[i].hora, data[i].luz]);
+                        //if(series.data.length > 15){
+                          //series.data[0].remove(true);
+                        //}
+                      //};
+                    //});
+                    //socket.on('luz22', function (data) {
+                      //var series = chartLuz2.series[1];
+                      //for (var i = 0; i < data.length; i++) {
+                        //series.addPoint([data[i].hora, data[i].luz]);
+                        //if(series.data.length > 15){
+                          //series.data[0].remove(true);
+                        //}
+                      //};
+                    //});
+                  //}
+              //}
+          //},
+          //rangeSelector : {
+              //selected : 100
+          //},
+          //title: {
+              //text: 'Luz'
+          //},
+          //xAxis: {
+              //type: 'datetime',
+              //tickPixelInterval: 150,
+              //maxZoom: 20 * 1000
+          //},
+          //yAxis: {
+              //minPadding: 0.2,
+              //maxPadding: 0.2,
+              //title: {
+                  //text: 'Lux'
+              //}
+          //},
+          //series: [{
+              //color: '#f39c12',
+              //name: 'Lote 1',
+              //data: []
+          //},{
+              //color: '#ff5722',
+              //name: 'Lote 2',
+              //data: []
+          //}]
+      //});

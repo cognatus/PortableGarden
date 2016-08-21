@@ -1,0 +1,118 @@
+extends layout3
+
+block content
+
+    .page_container
+      .blockpage_container
+        .page_title(style='background-color: #29B6F6;')
+          span.page_logo-settings
+          |           Configuración
+        .blockpage_innercontainer
+          .grid_display
+            .settings_sectiontitle
+              | Cuenta
+            .settings_optionscontainer
+              .setting_optionblock
+                .settings_option Id
+                .settings_optionouter
+                  .settings_optioninner
+                    span.infosettings_inner #{datos[0]._id}
+              .setting_optionblock
+                .settings_option CURP
+                .settings_optionouter
+                  form.settings_optioninner(action='modificarcurp', method='post') 
+                    span.infosettings_inner #{datos[0].curp}
+                    .right_fieldbutton
+                      input.set_text(type='text', placeholder='Nuevo CURP', name='curp')
+                      input.set_submit(type='submit', value='')
+              .setting_optionblock
+                .settings_option RFC
+                .settings_optionouter
+                  form.settings_optioninner(action='modificarrfc', method='post') 
+                    span.infosettings_inner #{datos[0].rfc}
+                    .right_fieldbutton
+                      input.set_text(type='text', placeholder='Nuevo RFC', name='rfc')
+                      input.set_submit(type='submit', value='')
+              .setting_optionblock
+                .settings_option Email
+                .settings_optionouter
+                  form.settings_optioninner(action='modificaremail', method='post') 
+                    span.infosettings_inner #{datos[0].email}
+                    .right_fieldbutton
+                      input.set_text(type='text', placeholder='Nuevo Email', name='email')
+                      input.set_submit(type='submit', value='')
+              .setting_optionblock
+                .settings_option Sexo
+                .settings_optionouter
+                  form.settings_optioninner(action='modificarsexo', method='post') 
+                    span.infosettings_inner #{datos[0].sexo}
+                    .right_fieldbutton
+                      select.set_text( name='sexo' )
+                        option Hombre
+                        option Mujer
+                      input.set_submit(type='submit', value='')
+              .setting_optionblock
+                .settings_option Nombre
+                .settings_optionouter
+                  form.settings_optioninner(action='modificarnombre', method='post') 
+                    span.infosettings_inner #{datos[0].nombre} #{datos[0].apellidop}
+                    .right_fieldbutton
+                      input.set_text(type='text', placeholder='Nuevo Nombre', name='nombre')
+                      input.set_submit(type='submit', value='')
+              .setting_optionblock
+                .settings_option Apellido Paterno
+                .settings_optionouter
+                  form.settings_optioninner(action='modificarapellidop', method='post') 
+                    span.infosettings_inner #{datos[0].apellidop}
+                    .right_fieldbutton
+                      input.set_text(type='text', placeholder='Nuevo Apellido Paterno', name='apellidop')
+                      input.set_submit(type='submit', value='')
+              .setting_optionblock
+                .settings_option Apellido Materno
+                .settings_optionouter
+                  form.settings_optioninner(action='modificarapellidom', method='post') 
+                    span.infosettings_inner #{datos[0].apellidom}
+                    .right_fieldbutton
+                      input.set_text(type='text', placeholder='Nuevo Apellido Materno', name='apellidom')
+                      input.set_submit(type='submit', value='')
+              .setting_optionblock
+                .settings_option Contraseña
+                .settings_optionouter
+                  form.settings_optioninner(action='modificarpassword', method='post') 
+                    .right_fieldbutton
+                      input.set_text(type='password', placeholder='Nueva contraseña', name='password')
+                      input.set_submit(type='submit', value='')
+                    .right_fieldbutton
+                      input.set_text(type='password', placeholder='Contraseña Anterior', name='old_password')
+
+              .setting_optionblock
+                .settings_option Tipo de Usuario
+                .settings_optionouter
+                  form.settings_optioninner 
+                    span.infosettings_inner #{datos[0].tipo}
+            .settings_sectiontitle
+              | Interfaz
+            .settings_optionscontainer
+              .setting_optionblock
+                .settings_option Tema
+                .settings_optionouter
+                  form.settings_optioninner(action='colorTema', method='post', id="form_theme") 
+                    .setswitch_cont
+                      span.infosettings_inner Dark Theme
+                      #set_theme.checkbox-style
+                        if datos[0].ctema == "on"
+                          input#theme(type='checkbox', name='theme', checked)
+                          label(for='theme')
+                        if datos[0].ctema == "off"
+                          input#theme(type='checkbox', name='theme')
+                          label(for='theme')
+              .setting_optionblock
+                .settings_option Mensajeria - Color de Énfasis
+                .settings_optionouter
+                  form.settings_optioninner(action='colorMSG', method='post')
+                    .colors_container
+                      .color_msmpallete 
+                    .right_fieldbutton
+                      input.set_submit(type='submit', value='')
+                      input(type='text', id="coloresta", name="coloresta", hidden)
+                      span.set_color(style="background-color: #{datos[0].cmensajes};")

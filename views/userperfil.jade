@@ -1,0 +1,132 @@
+extends layout3
+
+block content
+
+    .page_container
+
+      #profilepicture.appear_hiddenblock
+        .popup_blockdisplay
+          form#new_porfilepictureform(action='profile', method='post', enctype="multipart/form-data")
+            .close_grid
+              | Foto de Perfil
+              span#close_hiddenblock
+            .popup_belowcont
+              .popup_newtitlecontainer
+                .init_img
+                  .profilepicture_cont
+                    img(src='/profile/#{datos[0]._id}.jpg')
+
+      #new_profilepicture.appear_hiddenblock
+        .popup_blockdisplay
+          form#new_profilepictureform(action='profile', method='post', enctype="multipart/form-data")
+            .close_grid
+              | Foto de Perfil
+              span#close_hiddenblock
+            .popup_belowcont
+              .popup_newtitlecontainer
+                .userperfil_imgcont
+                  img(src='/profile/#{datos[0]._id}.jpg')
+              .report_uploadscontainer
+                .uploadcont
+                  .upload_title Foto de Perfil
+                  .upload
+                    input( type='file', id="imagen", name="imagen", accept="image/*" )
+                    .underupload
+                      span
+                      div No ha seleccionado Archivo
+              .upp_submitcontainer
+                input(type='submit', value='', name='upp_formsubmit')
+
+      #new_profileback.appear_hiddenblock
+        .popup_blockdisplay
+          form#new_profilepictureform(action='profile_back', method='post', enctype="multipart/form-data")
+            .close_grid
+              | Foto de Portada
+              span#close_hiddenblock
+            .popup_belowcont
+              .popup_newtitlecontainer
+                .userperfil_imgcont
+                  img(src='/profile/#{datos[0]._id}.jpg')
+              .report_uploadscontainer
+                .uploadcont
+                  .upload_title Foto de Portada
+                  .upload
+                    input( type='file', id="imagen", name="imagen", accept="image/*" )
+                    .underupload
+                      span
+                      div No ha seleccionado Archivo
+              .upp_submitcontainer
+                input(type='submit', value='', name='upp_formsubmit')
+
+      .blockpage_container
+        .page_title(style='background-color: #FFC107;')
+          span.page_logo-userinfo
+          | Perfil
+        .blockpage_innercontainer
+          .grid_display
+            .back_userinfo
+              .user_imgcont2
+                .minimenu
+                  span
+                  span
+                  span
+                .minimenu_in
+                  #change_userpp Foto de Perfil
+                  #change_userbackground Actualizar Portada
+                img.user_icon2(src='/profile/#{datos[0]._id}.jpg')
+              .userinfo_namecont #{datos[0].nombre} #{datos[0].apellidop}
+            .user_infodisplay
+              .userinfo_menucont
+                .userinfo_menuoption
+                  | Datos
+                .userinfo_menuoption
+                  | Otros Usuarios
+                .userinfo_menuoption
+                  | Cuenta
+              .userinfo_inner
+                .userinfo_section
+                  .message_sectiontitle_up Datos
+                  .userinfo_incont
+                    .userinfo_dat
+                      b Nombre:
+                      span #{datos[0].nombre}
+                    .userinfo_dat
+                      b Apellidos:
+                      span #{datos[0].apellidop} #{datos[0].apellidom}
+                    .userinfo_dat
+                      b Sexo:
+                      span #{datos[0].sexo}
+                    .userinfo_dat
+                      b CURP:
+                      span #{datos[0].curp}
+                    .userinfo_dat
+                      b RFC:
+                      span #{datos[0].rfc}
+                    .userinfo_dat
+                      b Correo:
+                      span #{datos[0].email}
+                    .userinfo_dat
+                      b Tipo:
+                      span #{datos[0].tipo}
+                .userinfo_section( ng-controller="users-data", ng-init="cargarUsers()" )
+                  .message_sectiontitle_up Otros Usuarios
+                  .userinfo_incont
+                     div( ng-repeat="item in users", ng-click="cargarInfo(item)" )
+                      .user_namedisp_prf
+                        img(src='/profile/{{item._id}}.jpg')
+                        label {{item.nombre}}
+                        div 
+                          b Función:  
+                          | {{item.tipo}}
+                .userinfo_section
+                  .message_sectiontitle_up Cuenta
+                  .userinfo_incont
+                    .userinfo_dat
+                      b Fecha de inicio:
+                      span 15 de Marzo del 2015
+                    .userinfo_dat
+                      b Mensajes Enviados:
+                      span 537 Mensajes
+                    .userinfo_dat2
+                      .right_fieldbutton
+                        input.set_submit(type='submit', value='Eliminar mi Cuenta')

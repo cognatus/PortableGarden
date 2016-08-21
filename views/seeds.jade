@@ -1,0 +1,133 @@
+extends layout3
+
+block content
+
+    //#alert_message.appear_hiddenblock
+    //  #close_hiddenblock.back_hiddenblock
+    //  .popup_blockdisplay
+    //    form#alert_formreprot(name='alert_formreprot')
+    //      .close_grid Alerta!
+    //      .alert_title
+    //        | Seguro que desea eliminar: 
+    //        span  'Nombre de Cosa' 
+    //        | ?
+    //      .alert_submitcontainer
+    //        input.but2(type='button', value='Cancelar')
+    //        input.but1(type='button', value='Aceptar')
+    .page_container( ng-controller="seeds-data", ng-init="cargarLote(1)" )
+
+      #new_seed.appear_hiddenblock
+        .popup_blockdisplay
+          form#new_seedform(name='new_seedform', action='agregaSem', method='post' onsubmit='return validarSemillas();')
+            .close_grid
+              | Nueva Semilla
+              span#close_hiddenblock
+            .popup_belowcont
+              #new_userdisplay.controluser_datscontainer
+                .controluser_optionpop
+                  span Lote
+                  select.set_textseeds(placeholder='No. Lote', name='lote')
+                    option 1
+                    option 2
+                .controluser_optionpop
+                  span Semilla
+                  input.set_textseeds(type='text', placeholder='Nuevo Nombre', name='semilla')
+                .controluser_optionpop
+                  span Especie
+                  input.set_textseeds(type='text', placeholder='Nueva Especie', name='especie')
+                .controluser_optionpop
+                  span Genero
+                  input.set_textseeds(type='text', placeholder='Nuevo Genero', name='genero')
+                .controluser_optionpop
+                  span Clase
+                  input.set_textseeds(type='text', placeholder='Nueva Clase', name='clase')
+                .controluser_optionpop
+                  span Familia
+                  input.set_textseeds(type='text', placeholder='Nueva Familia', name='familia')
+                .controluser_optionpop
+                  span Orden
+                  input.set_textseeds(type='text', placeholder='Nuevo Orden', name='orden')
+                .controluser_optionpop
+                  span PH
+                  input.set_textseeds(type='text', placeholder='Nuevo PH', name='pH')
+                .controluser_optionpop
+                  span Ciclo Vegetal
+                  input.set_textseeds(type='text', placeholder='Nuevo Ciclo Vegetal', name='ciclov')
+                .controluser_optionpop
+                  span Tipo de Siembra
+                  input.set_textseeds(type='text', placeholder='Nuevo Tipo de Siembra', name='siembra')
+                .controluser_optionpop
+                  span Temperatura Óptima
+                  input.set_textseeds(type='text', placeholder='Nueva Temperatura', name='temperatura')
+                .controluser_optionpop
+                  span Iluminacion Óptima
+                  input.set_textseeds(type='text', placeholder='Nueva Iluminacion', name='iluminacion')
+                .controluser_optionpop
+                  span Humedad Óptima
+                  input.set_textseeds(type='text', placeholder='Nueva Humedad', name='humedad')
+                .seeds_submitcontainer
+                  input(type='submit', value='')
+
+      .blockpage_container
+        .page_title(style='background-color: #8D6E63;')
+          span.page_logo-seeds
+          |           Semillas
+        .blockpage_innercontainer
+          .grid_display
+            #grid_move5.stats_display
+              .huert_display
+                .stats_sectiontitle
+                  | Mapa del Huerto
+                .huert_minidisplay
+                  #huertsecc1.section_huert( ng-click="cargarLote(1)" )
+                    div Piso 1
+                  #huertsecc2.section_huert( ng-click="cargarLote(2)" )
+                    div Piso 2
+              .stats_actionsouter
+                .stats_sectiontitle
+                  #back_button5.back_button
+                    span
+                  | Datos de las semillas
+                .seedsnew_disp
+                  b +
+                  | Nueva Semilla
+                .seeds_datstitle
+                  | Lote No. 1
+                .seeds_datscontainer( ng-repeat="item in seeds" )
+                  .seeds_datstitledown
+                    | Semilla 1
+                    span( ng-click="eliminarSemilla(item.lote, item.semilla)" ) X
+                  .seeds_dat
+                    .seeds_datinner
+                      | Especie:
+                      span {{item.especie}}
+                    .seeds_datinner
+                      | Genero:
+                      span {{item.genero}}
+                    .seeds_datinner
+                      | Clase:
+                      span {{item.clase}}
+                    .seeds_datinner
+                      | Familia:
+                      span {{item.familia}}
+                    .seeds_datinner
+                      | Orden:
+                      span {{item.orden}}
+                    .seeds_datinner
+                      | PH:
+                      span {{item.pH}}
+                    .seeds_datinner
+                      | Ciclo Vegetal:
+                      span {{item.ciclov}}
+                    .seeds_datinner
+                      | Tipo de Siembra:
+                      span {{item.siembra}}
+                    .seeds_datinner
+                      | Temperatura Óptima:
+                      span {{item.temperatura}} ° C
+                    .seeds_datinner
+                      | Humedad Óptima:
+                      span {{item.humedad}} HR    
+                    .seeds_datinner
+                      | Iluminacion Óptima:
+                      span {{item.iluminacion}} Lux

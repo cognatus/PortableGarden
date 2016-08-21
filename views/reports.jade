@@ -1,0 +1,109 @@
+extends layout2
+
+block content
+
+    //#alert_message.appear_hiddenblock
+    //  #close_hiddenblock.back_hiddenblock
+    //  .popup_blockdisplay
+    //    form#alert_formreprot(name='alert_formreprot')
+    //      .close_grid Alerta!
+    //      .alert_title
+    //        | Seguro que desea eliminar: 
+    //        span  'Nombre de Cosa' 
+    //        | ?
+    //      .alert_submitcontainer
+    //        input.but2(type='button', value='Cancelar')
+    //        input.but1(type='button', value='Aceptar')
+
+    script( type='text/javascript' src='/js/angular.min.js' )
+
+    script( type='text/javascript' src='/js/front-end.js' )
+
+    .page_container(ng-controller="reports", ng-init="cargarReports(#{datos[0]._id})")
+
+      #new_report.appear_hiddenblock
+        .popup_blockdisplay
+          form( action="/upload", method="post", id="upload-form", enctype="multipart/form-data" )
+            .close_grid
+              | Nuevo Reporte
+              span#close_hiddenblock
+            .popup_belowcont
+              .popup_newtitlecontainer
+                input#input_reportpop.popuptitle_in( type='text', name="titulo" placeholder='Título' )
+              .popuptext_container
+                textarea.report_cont( placeholder ='Texto', name="contenido")
+              .report_uploadscontainer
+                .uploadcont
+                  .upload_title Grafica de Luz
+                  .upload
+                    input( type='file', id="luz", name="luz", accept="image/*" )
+                    .underupload
+                      span
+                      div No ha seleccionado Archivo
+                .uploadcont
+                  .upload_title Grafica de Temperatura
+                  .upload
+                    input( type='file', id="temp", name="temp", accept="image/*" )
+                    .underupload
+                      span
+                      div No ha seleccionado Archivo
+                .uploadcont
+                  .upload_title Grafica de Humedad
+                  .upload
+                    input( type='file', id="hum", name="hum", accept="image/*" )
+                    .underupload
+                      span
+                      div No ha seleccionado Archivo
+              .report_submitcontainer
+                input(type='submit', value='') 
+                //input.save(type='submit', value='Guardar Reporte') 
+                
+      .blockpage_container
+        .page_title(style='background-color: #F44336;')
+          span.page_logo-reports
+          | Reportes
+        .blockpage_innercontainer
+          .grid_display
+            #grid_move3.reports_display
+              .reports_displayinner
+                .reports_sectiontitle
+                  | Reportes
+                .reportnew_disp
+                  b +
+                  span Nuevo Reporte
+                .reportnamedisp_container
+                  div( ng-repeat="item in reports", ng-click="cargarInfo(item, #{datos[0]._id})" )
+                    .report_namedisp
+                      | {{item.titulo}}
+                      span( ng-click="borrarReporte(item, #{datos[0]._id})" ) X
+                      div
+                        | {{item.contenido}}
+              .reportsinfo_displayinner
+                .reports_sectiontitle
+                  #back_button3.back_button
+                    span
+                  | Datos del Reporte
+                .reports_datscontainer
+                  #old_report.reports_datsblock
+                    .report_newtitlecontainer
+                      b Titulo:
+                      .sd
+                        b Fecha :
+                        span {{elegido.dia}}/{{elegido.mes}}/{{elegido.year}}
+                      .reporttitle {{elegido.titulo}}
+                    .reporttext_container
+                      span Contenido :
+                      .report_cont
+                        div(style="padding: 0 0 24px 0;")
+                          | {{elegido.contenido}}
+                        div
+                          input( type='text', id="tituloo" value="{{elegido.titulo}}", hidden )
+                          input( type='text', id="textoo" value="{{elegido.contenido}}", hidden )
+                          canvas( id="canvastemp",width="1200", height="800", hidden)
+                          canvas( id="canvashum",width="1200", height="800", hidden)
+                          canvas( id="canvasluz",width="1200", height="800", hidden)
+                          img( id="tempo", src=("../charts/"+datos[0]._id+"temp{{elegido.dia}}{{elegido.mes}}{{elegido.year}}{{elegido.hora}}{{elegido.minuto}}{{elegido.segundo}}{{elegido.hap}}.jpg"))
+                          img( id="humo", src=("../charts/"+datos[0]._id+"hum{{elegido.dia}}{{elegido.mes}}{{elegido.year}}{{elegido.hora}}{{elegido.minuto}}{{elegido.segundo}}{{elegido.hap}}.jpg"))
+                          img( id="luzo", src=("../charts/"+datos[0]._id+"luz{{elegido.dia}}{{elegido.mes}}{{elegido.year}}{{elegido.hora}}{{elegido.minuto}}{{elegido.segundo}}{{elegido.hap}}.jpg"))
+                    .report_submitcontainer(style="height: 34px;")
+                      input.save(type='button', value='Descargar', onclick="PDF()", style="float: right;") 

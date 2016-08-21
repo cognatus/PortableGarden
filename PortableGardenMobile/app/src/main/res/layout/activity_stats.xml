@@ -1,0 +1,236 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.ipn.mx.portablegardenmobile.stats"
+    android:background="#e0e0e0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/page_title"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_title"
+                style="@style/page_titletext"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/grid_display">
+
+            <TextView
+                style="@style/section_title"
+                android:text="@string/map_title"/>
+
+            <LinearLayout
+                style="@style/huert_map">
+
+                <LinearLayout
+                    style="@style/huert_secc">
+
+                    <Button
+                        android:id="@+id/id_boton1"
+                        style="@style/huert_secctitle"
+                        android:text="PISO 1"/>
+
+                </LinearLayout>
+
+                <!--<LinearLayout
+                    style="@style/huert_secc">
+
+                    <Button
+                        android:id="@+id/id_boton2"
+                        style="@style/huert_secctitle"
+                        android:text="PISO 2"/>
+
+                </LinearLayout>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/border_bottom"></LinearLayout>
+
+            <TextView
+                style="@style/section_title"
+                android:text="@string/funct_title"/>
+
+
+            <TextView
+                android:id="@+id/id_piso"
+                style="@style/floor_title"
+                android:text="Piso 1" />
+
+            <!--LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/pd_block">
+
+                    <TextView
+                        android:text="@string/luz"
+                        style="@style/uppercase_text"
+                        />
+
+                    <TextView
+                        android:id="@+id/id_luz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:gravity="right"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/pd_block">
+
+                    <TextView
+                        android:text="@string/temp"
+                        style="@style/uppercase_text"
+                        />
+
+                    <TextView
+                        android:id="@+id/id_temp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="26°C"
+                        android:gravity="right"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/pd_block">
+
+                    <TextView
+                        android:text="@string/hum"
+                        style="@style/uppercase_text"
+                        />
+
+                    <TextView
+                        android:id="@+id/id_hum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="22"
+                        android:gravity="right"/>
+
+                </LinearLayout>
+
+            </LinearLayout-->
+
+            <LinearLayout
+                style="@style/border_bottom"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                   style="@style/pd_block2">
+
+                    <TextView
+                        android:text="@string/luz"
+                        style="@style/uppercase_text2"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Switch
+                            android:id="@+id/id_swLuz"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:onClick="clickLuz"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/pd_block2">
+
+                    <TextView
+                        android:text="@string/agua"
+                        style="@style/uppercase_text2"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Switch
+                            android:id="@+id/id_swAgua"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:onClick="clickAgua"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/pd_block2">
+
+                    <TextView
+                        android:text="@string/vent"
+                        style="@style/uppercase_text2"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Switch
+                            android:id="@+id/id_swVentiladores"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:onClick="clickVentiladores"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/pd_block2">
+
+                    <TextView
+                        android:text="@string/cort"
+                        style="@style/uppercase_text2"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Switch
+                            android:id="@+id/id_swCortinas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:onClick="clickCortina"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

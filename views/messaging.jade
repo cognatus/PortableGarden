@@ -1,0 +1,122 @@
+extends layout3
+
+block content
+    style.
+      .msm_buoth, i.riseblock{background-color: #{datos[0].cmensajes};}
+      .msm_buoth, i.riseblock{background-color: #{datos[0].cmensajes};}
+
+    //#alert_message.appear_hiddenblock
+    //  #close_hiddenblock.back_hiddenblock
+    //  .popup_blockdisplay
+    //    form#alert_formreprot(name='alert_formreprot')
+    //      .close_grid Alerta!
+    //      .alert_title
+    //        | Seguro que desea eliminar: 
+    //        span  'Nombre de Cosa' 
+    //        | ?
+    //      .alert_submitcontainer
+    //        input.but2(type='button', value='Cancelar')
+    //        input.but1(type='button', value='Aceptar')
+    
+    .page_container( ng-controller="chat", ng-init="cargarUsers(#{datos[0]._id}, #{elegido})" )
+      
+      //#new_message.appear_hiddenblock
+        //.popup_blockdisplay
+          //form#new_messageform(name='new_messageform')
+            //.close_grid
+              //| Nuevo Mensaje
+              //span#close_hiddenblock
+            //.popup_belowcont
+              //.popup_newtitlecontainer
+                //input#input_messagepop.popuptitle_in(type='text', name='destiny', placeholder='Para')
+                //.name_spinnercont
+                  //div( ng-repeat="item in users", ng-click="cargarInfo(item, #{datos[0]._id})" )
+                    //.spinner_item
+                      //img(src='profile/{{item.iddest}}.jpg')
+                      //span {{item.dest}} {{item.destapp}}
+              //.popuptext_container
+                //textarea.message_cont(name='form_messagetext', placeholder='Message')
+              //.message_submitcontainer
+                //input(type='submit', value='', name='message_formsubmit')
+                
+      .blockpage_container
+        .page_title(style='background-color: #3F51B5;')
+          span.page_logo-messaging
+          | Mensajeria
+        .blockpage_innercontainer
+          div(style='width:100%;')
+          //.messaging_menucontainer
+          //  #messaging_option1.messaging_optionmenu Mensajes
+          //  #messaging_option2.messaging_optionmenu Notificaciones
+          .grid_display
+            #display_ownmessages.display_msm
+              form(ng-submit="enviar(#{datos[0]._id})")
+                #grid_move.messaging_display
+                  .message_displayinner
+                    .message_sectiontitle_up
+                      | Mensajes
+                    //.messagenew_disp
+                      //b +
+                      //span Nuevo Mensaje
+                    .messagenamedisp_container
+                      div( ng-repeat="item in users", ng-click="cargarInfo(item, #{datos[0]._id})" )
+                        .message_namedisp
+                          img(src='profile/{{item.iddest}}.jpg')
+                          | {{item.dest}} {{item.destapp}}
+                          span X
+                          div
+                            | {{item.emisor}} {{item.ultimo}}
+                                      
+                  .messageinfo_displayinner
+                    .messageinfo_displayinnerright
+                      #read_message.messageinfo_blockdisplay
+                        .message_newtitlecontainer
+                          #back_button.back_button
+                            span
+                          img(src='profile/{{elegido.iddest}}.jpg')
+                          b Usuario :
+                          .messagetitle
+                            | {{elegido.dest}} {{elegido.destapp}}
+                        .messagetext_container
+                          #message_cont.message_cont
+                            .msm_supercont#msm_scroll
+                          .message_inputcontainer
+                            .message_input
+                              input#msm_value(type="text" placeholder='Mensaje', value='',ng-model='mensaje')
+                              input#msm_submit(type='submit', value='', name='message_formsubmit')
+
+            //#display_notifications.display_msm
+            //  .message_sectiontitle_up Notificaciones
+            //  #notifications_display.notifications_container
+            //    .notification_block
+            //      .notification_title
+            //        | Una notificación
+            //        span#notdate_title
+            //          | Fecha : 
+            //          b 11/12/2014
+            //      .notif_infocontainer
+            //        .notif_inner Pequeña descripcion de la notificación
+            //    .notification_block
+            //      .notification_title
+            //        | Una notificación
+            //        span#notdate_title
+            //          | Fecha : 
+            //          b 11/12/2014
+            //      .notif_infocontainer
+            //        .notif_inner Pequeña descripcion de la notificación
+            //    .notification_block
+            //      .notification_title
+            //        | Una notificación
+            //        span#notdate_title
+            //          | Fecha : 
+            //          b 11/12/2014
+            //      .notif_infocontainer
+            //        .notif_inner Pequeña descripcion de la notificación
+            //    .notification_block
+            //      .notification_title
+            //        | Una notificación
+            //        span#notdate_title
+            //          | Fecha : 
+            //          b 11/12/2014
+            //      .notif_infocontainer
+            //        .notif_inner Pequeña descripcion de la notificación
